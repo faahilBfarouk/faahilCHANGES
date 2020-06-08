@@ -1,6 +1,10 @@
 # faahilCHANGES
 
 # 8/6 9.15 PM
+
+1) Import company_finance SQL table
+2) put all the uploaded files to VIEW
+
 ## add to HOME_CONTROLLER
         
      public function Finance() {
