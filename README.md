@@ -32,6 +32,7 @@
     }
     
 # 9/6 11.30 AM
+1) import Branches.sql as table in DB
 ## add to HOME_CONTROLLER
         
         public function demo() {
@@ -41,7 +42,6 @@
         $config["total_rows"] = $this->Home_Model->record_count($category);
         $config["per_page"] = 2;
         $config["uri_segment"] = 4;
-
         $config['full_tag_open'] = '<ul class="pagination">';
         $config['full_tag_close'] = '</ul>';
         $config['first_link'] = false;
@@ -60,13 +60,44 @@
         $config['cur_tag_close'] = '</a></li>';
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
-        
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $data["results"] = $this->Home_Model->
                 fetch_categories($config["per_page"], $page, $category);
         $data["links"] = $this->pagination->create_links();
         $this->load->view('Demo', $data);
-    }
-    
+        }
+
+        public function Contact() {
+        $head['head'] = $this->Home_Model->get_Head_Contact();
+        $branches['branches'] = $this->Home_Model->get_Contact();
+        $this->load->view('Contact',$head,$branches);
+        //echo get_category();
+        }   
+## add to HELPER_FUNCTIONS
+        function get_Contact(){
+            $ci = get_instance();
+            $where = array(
+                'Br_Status' => 2
+            );
+            $branches = $ci->db->get_where('Branches',$where)->result_array();
+            return $branches;
+        }
+        
+ ## add to HOME_MODEL
+        function get_Head_Contact(){
+        $where = array(
+            'Br_Status' => 1
+        );
+        $headOffice = $this->db->get_where('Branches',$where)->result_array();
+        return $headOffice;
+        }
+
+        function get_Contact(){
+        $where = array(
+            'Br_Status' => 2
+        );
+        $branches = $this->db->get_where('Branches',$where)->result_array();
+        return $branches;
+        }
     
