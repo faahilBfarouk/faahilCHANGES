@@ -46,12 +46,12 @@
         $config['full_tag_close'] = '</ul>';
         $config['first_link'] = false;
         $config['last_link'] = false;
-        $config['first_tag_open'] = '<li>1';
+        $config['first_tag_open'] = '<li>';
         $config['first_tag_close'] = '</li>';
-        $config['prev_link'] = '«';
+        $config['prev_link'] = 'PREV';
         $config['prev_tag_open'] = '<li class="prev">';
         $config['prev_tag_close'] = '</li>';
-        $config['next_link'] = '»';
+        $config['next_link'] = 'NEXT';
         $config['next_tag_open'] = '<li>';
         $config['next_tag_close'] = '</li>';
         $config['last_tag_open'] = '<li>';
@@ -60,11 +60,6 @@
         $config['cur_tag_close'] = '</a></li>';
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
- 
-          
-
-
-        
         
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
@@ -73,3 +68,5 @@
         $data["links"] = $this->pagination->create_links();
         $this->load->view('Demo', $data);
     }
+    
+    
