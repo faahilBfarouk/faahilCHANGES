@@ -101,3 +101,32 @@
         return $branches;
         }
     
+# 10/6 11.30
+1) use this link to get all Extra images. Put all content of this drive to /dark/img/
+https://drive.google.com/drive/folders/1W56spIDDhxlaMQPxelTSJsrUx46ddVCW?usp=sharing
+2) add the tables
+
+## add to HOME_CTRL
+        public function Insurance() {
+        $result['title'] = $this->Home_Model->get_Insurance_Info();
+   
+        $this->load->view('Insurance', $result);
+        }
+## add to HOME_MODEL
+        function get_Insurance_Info(){
+            $ins1 = $this->db->get('insurance_claim_process')->result_array();
+            $ins2 = $this->db->get('insurance_y_choose_us')->result_array();
+
+            return array($ins1,$ins2);
+        }
+## add to helper
+        function get_Best_Insurance_Agent(){
+            $ci = get_instance();
+            $ci->db->join('performance','performance.perf_eid = emp.Emp_Eid');
+            $where = array(
+                'performance.perf_in_service_ID' => 3,
+                'performance.perf_rank' => 1,
+            );
+            $ci->db->where($where);
+            return $ci->db->get('emp')->result_array();
+        }
