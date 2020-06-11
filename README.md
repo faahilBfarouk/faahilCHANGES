@@ -170,3 +170,5 @@ https://drive.google.com/drive/folders/1W56spIDDhxlaMQPxelTSJsrUx46ddVCW?usp=sha
                             return $ci->db->get($table)->result_array();
                                 }
 
+
+
