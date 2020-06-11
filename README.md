@@ -130,3 +130,43 @@ https://drive.google.com/drive/folders/1W56spIDDhxlaMQPxelTSJsrUx46ddVCW?usp=sha
             $ci->db->where($where);
             return $ci->db->get('emp')->result_array();
         }
+
+# 11/6 4.25
+
+1) add Sendemail.php to controller
+2) rest files to view
+3) BRanches to DB
+## add to Helper
+        function get_All_Services(){
+    $ci = get_instance();
+    $where = array(
+        'services_status' => 1    );
+    $ci->db->where($where);
+    return $ci->db->get('services')->result_array();
+}
+
+
+function select_dropdown($table,$table_filed,$id,$status){
+    $ci = get_instance();
+    //$table = 'services';
+    //$table_filed = 'services_id';
+    //$id = 1;
+ 
+    $where=array(
+        $status=> 1,
+        $table_filed => $id
+            );
+            $ci->db->where($where);
+            return $ci->db->get($table)->result_array();
+        }
+        function populate_dropdown($table,$status){
+            $ci = get_instance();
+
+
+            $where=array(
+                $status=> 1,
+            );
+            $ci->db->where($where);
+            return $ci->db->get($table)->result_array();
+                }
+
